@@ -66,7 +66,9 @@ export class AppComponent implements OnInit {
           shadowUrl: '',
         }),
       });
-      makerss.addTo(map);
+      if (this.showAddEvent) {
+        makerss.addTo(map);
+      }
     });
   }
 }
