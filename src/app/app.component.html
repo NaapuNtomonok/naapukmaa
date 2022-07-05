@@ -36,6 +36,7 @@
       leaflet
       [leafletOptions]="options"
       [leafletLayersControl]="layersControl"
+      (leafletMapReady)="onMapReady($event)"
     ></div>
     <div class="container brt">
       <div *ngIf="!showAddEvent" class="add-event">

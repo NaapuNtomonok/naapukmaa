@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { latLng, LatLng, tileLayer, circle, polygon } from 'leaflet';
+import {
+  latLng,
+  Map,
+  marker,
+  Icon,
+  icon,
+  tileLayer,
+  circle,
+  polygon,
+} from 'leaflet';
 
 @Component({
   selector: 'app-root',
@@ -44,5 +53,20 @@ export class AppComponent implements OnInit {
   ngOnInit() {}
   addEvent() {
     this.showAddEvent = !this.showAddEvent;
+  }
+  onMapReady(map: Map) {
+    // Do stuff with map
+    // Map canvas click event to get feature attributes of selected overlay from navbar
+    map.on('click', <LeafletMouseEvent>(e: any) => {
+      const makerss = marker([e.latlng.lat, e.latlng.lng], {
+        icon: icon({
+          ...Icon.Default.prototype.options,
+          iconUrl: '/assets/images/marker-icon.gif',
+          iconRetinaUrl: '/assets/images/marker-icon.gif',
+          shadowUrl: '',
+        }),
+      });
+      makerss.addTo(map);
+    });
   }
 }
